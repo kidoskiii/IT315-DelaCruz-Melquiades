@@ -213,5 +213,24 @@
         </table>
     </div>
 
+    <script>
+        let deleteTaskId = null;
+
+        function openModal(taskId) {
+            deleteTaskId = taskId;
+            document.getElementById('deleteModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            deleteTaskId = null;
+            document.getElementById('deleteModal').style.display = 'none';
+        }
+
+        function confirmDelete() {
+            if (deleteTaskId) {
+                window.location.href = `delete_task.php?id=${deleteTaskId}`;
+            }
+        }
+    </script>
 </body>
 </html>
