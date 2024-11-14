@@ -189,38 +189,29 @@
         </form>
 
         <?php include 'db.php'; ?>
-    </div>
 
-    <!-- Delete Confirmation Modal -->
-    <div id="deleteModal" class="modal">
-        <div class="modal-content">
-            <h2>Confirm Deletion</h2>
-            <p>Are you sure you want to delete this task?</p>
-            <div class="modal-buttons">
-                <button class="confirm-btn" onclick="confirmDelete()">Delete</button>
-                <button class="cancel-btn" onclick="closeModal()">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let deleteTaskId = null;
-
-        function openModal(taskId) {
-            deleteTaskId = taskId;
-            document.getElementById('deleteModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            deleteTaskId = null;
-            document.getElementById('deleteModal').style.display = 'none';
-        }
-
-        function confirmDelete() {
-            if (deleteTaskId) {
-                window.location.href = `delete_task.php?id=${deleteTaskId}`;
+        <!-- Task table -->
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Actions</th>
+            </tr>
+            <?php
+            // Fetch and display tasks from the database
+            $conn = mysqli_connect($Host, $User, $Pass, $DBName);
+            $result = $conn->query("SELECT * FROM tasks ORDER BY id DESC");
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['task']) . "</td>";
+                echo "<td class='action-links'>
+                        <a href='edit_task.php?id=" . $row['id'] . "' class='edit-btn'>Edit</a>
+                        <a href='#' class='delete-btn' onclick='openModal(" . $row['id'] . ")'>Delete</a>
+                      </td>";
+                echo "</tr>";
             }
-        }
-    </script>
+            ?>
+        </table>
+    </div>
+
 </body>
 </html>
