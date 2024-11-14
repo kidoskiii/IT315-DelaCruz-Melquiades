@@ -17,7 +17,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #87CEEB; 
+            background-color: gray; 
         }
 
         .todo-container {
@@ -81,7 +81,7 @@
         }
 
         th {
-            background-color: #32CD32;
+            background-color: gray;
             color: white;
             font-weight: bold;
             font-size: 16px;
@@ -89,10 +89,6 @@
 
         td {
             background-color: #f9f9f9;
-        }
-
-        tr:nth-child(even) td {
-            background-color: #e6f7ff; 
         }
 
         tr:hover td {
@@ -114,7 +110,7 @@
         }
 
         .action-links .edit-btn {
-            background-color: #007bff; 
+            background-color: gray; 
         }
 
         .action-links .edit-btn:hover {
@@ -122,7 +118,7 @@
         }
 
         .action-links .delete-btn {
-            background-color: #ff4d4d; 
+            background-color: gray; 
         }
 
         .action-links .delete-btn:hover {
@@ -211,6 +207,18 @@
             }
             ?>
         </table>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h2>Confirm Deletion</h2>
+            <p>Are you sure you want to delete this task?</p>
+            <div class="modal-buttons">
+                <button class="confirm-btn" onclick="confirmDelete()">Delete</button>
+                <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
     </div>
 
     <script>
